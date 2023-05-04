@@ -8,6 +8,7 @@ const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
   const [showEployee, setShowEmployee] = useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   const handleSubmit = () => {
     navigate('/dashboard');
@@ -204,6 +205,38 @@ const Registration = () => {
           <div className='flex flex-row gap-14'>
             <div className='mb-2 mt-8'>
               <label
+                htmlFor='url'
+                className='block flex text-sm font-semibold text-gray-800'
+              >
+                Company Website
+                <p className='mt-1 ml-1'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='#be185d'
+                    viewBox='0 0 24 24'
+                    strokeWidth={1.5}
+                    stroke='currentColor'
+                    className='w-2 h-2'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
+                    />
+                  </svg>
+                </p>
+              </label>
+              <div className='flex items-center border-b border-grey-500 py-2'>
+                <input
+                  required
+                  className='appearance-none bg-transparent border-none w-full text-gray-700 leading-tight focus:outline-none'
+                  type='url'
+                  placeholder='Please enter your company email id'
+                />
+              </div>
+            </div>
+            <div className='mb-2 mt-8'>
+              <label
                 htmlFor='email'
                 className='block flex text-sm font-semibold text-gray-800'
               >
@@ -228,40 +261,8 @@ const Registration = () => {
               <div className='flex items-center border-b border-grey-500 py-2'>
                 <input
                   required
-                  className='appearance-none bg-transparent border-none w-full text-gray-700 leading-tight focus:outline-none'
-                  type='email'
-                  placeholder='Please enter your company email id'
-                />
-              </div>
-            </div>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='number'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Contact Number
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
                   className='appearance-none bg-transparent border-none w-full text-gray-700  leading-tight focus:outline-none'
-                  type='tel'
+                  type='email'
                   placeholder='123456789'
                 />
               </div>
@@ -369,11 +370,55 @@ const Registration = () => {
           </div>
           <div></div>
           <button
-            type='submit'
-            className='w-full text-white border border-black-300 bg-pink-700 font-medium rounded-lg text-xl px-5 py-2 text-center'
+            className='w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow'
+            type='button'
+            onClick={() => setShowModal(true)}
           >
             Register
           </button>
+          {showModal && (
+            <>
+              <div className='justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'>
+                <div className='relative w-auto my-6 mx-auto max-w-3xl'>
+                  {/*content*/}
+                  <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
+                    <div class='mt-3 text-center'>
+                      <div class='mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100'>
+                        <svg
+                          class='h-6 w-6 text-green-600'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                            stroke-width='2'
+                            d='M5 13l4 4L19 7'
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                    {/*body*/}
+                    <div className='relative p-6 flex-auto'>
+                      <p className='my-4 text-slate-500 text-lg leading-relaxed'>
+                        your registration has been successfully done
+                      </p>
+                    </div>
+                    {/*footer*/}
+                    <button
+                      id='ok-btn'
+                      class='px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300'
+                    >
+                      OK
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
+            </>
+          )}
           <button
             type='submit'
             className='w-full text-black border border-pink-700 font-medium rounded-lg text-xl px-5 py-2.5 text-center'

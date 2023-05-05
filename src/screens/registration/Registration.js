@@ -415,7 +415,7 @@ const Registration = () => {
                 {/*body*/}
                 <div className='relative p-6 flex-auto'>
                   <p className='my-4 text-slate-500 text-lg leading-relaxed'>
-                    your registration has been successfully done
+                    Your account has been registered successfully.
                   </p>
                 </div>
                 {/*footer*/}

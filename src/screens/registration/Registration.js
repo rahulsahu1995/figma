@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdLocationOn } from 'react-icons/md';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -10,8 +10,9 @@ const Registration = () => {
   const [showEployee, setShowEmployee] = useState(false);
   const [showModal, setShowModal] = React.useState(false);
 
-  const handleSubmit = () => {
-    navigate('/dashboard');
+  const handleSubmit = (e) => {
+    setShowModal(true);
+    e?.preventDefault();
   };
 
   return (
@@ -24,7 +25,7 @@ const Registration = () => {
         />
       </div>
       <div className=' rounded-lg justify-center shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700'>
-        <form className='space-y-6' onSubmit={() => handleSubmit()}>
+        <form className='space-y-6' onSubmit={(e) => handleSubmit(e)}>
           <div></div>
           <div>
             <h5 className='text-xl font-medium text-gray-900 dark:text-white font-bold'>
@@ -126,7 +127,7 @@ const Registration = () => {
                 <input
                   required
                   className='appearance-none bg-transparent border-none w-full text-gray-700  leading-tight focus:outline-none'
-                  type='tel'
+                  type='number'
                   placeholder='123456789'
                 />
               </div>
@@ -263,7 +264,7 @@ const Registration = () => {
                   required
                   className='appearance-none bg-transparent border-none w-full text-gray-700  leading-tight focus:outline-none'
                   type='email'
-                  placeholder='123456789'
+                  placeholder='email@gmail.com'
                 />
               </div>
             </div>
@@ -371,68 +372,69 @@ const Registration = () => {
           <div></div>
           <button
             className='w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow'
-            type='button'
-            onClick={() => setShowModal(true)}
+            type='submit'
           >
             Register
           </button>
-          {showModal && (
-            <>
-              <div className='justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'>
-                <div className='relative w-auto my-6 mx-auto max-w-3xl'>
-                  {/*content*/}
-                  <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
-                    <div class='mt-3 text-center'>
-                      <div class='mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100'>
-                        <svg
-                          class='h-6 w-6 text-green-600'
-                          fill='none'
-                          stroke='currentColor'
-                          viewBox='0 0 24 24'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            stroke-width='2'
-                            d='M5 13l4 4L19 7'
-                          ></path>
-                        </svg>
-                      </div>
-                    </div>
-                    {/*body*/}
-                    <div className='relative p-6 flex-auto'>
-                      <p className='my-4 text-slate-500 text-lg leading-relaxed'>
-                        your registration has been successfully done
-                      </p>
-                    </div>
-                    {/*footer*/}
-                    <button
-                      id='ok-btn'
-                      class='px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300'
-                    >
-                      OK
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
-            </>
-          )}
           <button
-            type='submit'
+            type='button'
             className='w-full text-black border border-pink-700 font-medium rounded-lg text-xl px-5 py-2.5 text-center'
+            onClick={() => navigate('/')}
           >
             Already have an account ?
-            <a
-              href='/login'
-              className='ml-2 text-sm text-pink-700 hover:underline dark:text-blue-500'
-            >
+            <span className='ml-2 text-sm text-pink-700 hover:underline dark:text-blue-500'>
               Login
-            </a>
+            </span>
           </button>
         </form>
       </div>
+      {showModal && (
+        <>
+          <div className='justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'>
+            <div className='relative w-auto my-6 mx-auto max-w-3xl'>
+              {/*content*/}
+              <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
+                <div class='mt-3 text-center'>
+                  <div class='mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100'>
+                    <svg
+                      class='h-6 w-6 text-green-600'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                        stroke-width='2'
+                        d='M5 13l4 4L19 7'
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                {/*body*/}
+                <div className='relative p-6 flex-auto'>
+                  <p className='my-4 text-slate-500 text-lg leading-relaxed'>
+                    your registration has been successfully done
+                  </p>
+                </div>
+                {/*footer*/}
+                <button
+                  id='ok-btn'
+                  class='px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300'
+                  onClick={() => {
+                    setShowModal(false);
+                    navigate('/dashboard');
+                  }}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
+        </>
+      )}
     </div>
   );
 };

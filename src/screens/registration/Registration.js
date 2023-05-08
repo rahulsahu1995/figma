@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { MdLocationOn } from 'react-icons/md';
+import { FaCheck, FaRegUserCircle } from 'react-icons/fa';
+import { IoIosCloseCircle } from 'react-icons/io';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom';
+import { IconContext } from 'react-icons/lib';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -16,35 +19,37 @@ const Registration = () => {
   };
 
   return (
-    <div className='flex flex-row justify-center'>
-      <div>
+    <div className='flex flex-row justify-between'>
+      <div className='w-2/6'>
         <img
           src={process.env.PUBLIC_URL + '/images/candit.png'}
-          className='h-88 mr-3'
+          className='w-32 h-32 mt-10 ml-20'
           alt='logo'
         />
       </div>
-      <div className=' rounded-lg justify-center shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700'>
-        <form className='space-y-6' onSubmit={(e) => handleSubmit(e)}>
-          <div></div>
-          <div>
-            <h5 className='text-xl font-medium text-gray-900 dark:text-white font-bold'>
-              Registration
-            </h5>
-            <p>Please signup to continue</p>
+      <div className='flex items-center justify-center px-12 py-8 w-8/12'>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className='font-semibold text-left font-sans text-2xl'>
+            Register
           </div>
-          <div className='flex items-center  border-b border-grey-500 py-2 mt-12'>
+          <div className='text-left text-sm'>Please sign up to continue</div>
+          <div className='flex items-center justify-center border-b text-[#4A535C80] pb-1 mt-4 w-72'>
             <div
               className='flex flex-start items-end cursor-pointer'
               onClick={() => setShowEmployee(false)}
             >
-              <img
-                src={process.env.PUBLIC_URL + '/images/user.png'}
-                className='w-7 h-7'
-              />
+              <IconContext.Provider
+                value={{
+                  color: !showEployee ? '#8C172B' : '#808080',
+                }}
+              >
+                <div>
+                  <FaRegUserCircle className='w-7 h-7' />
+                </div>
+              </IconContext.Provider>
               <span
                 className={`ml-2 text-sm ${
-                  !showEployee ? 'text-red-600' : 'text-gray-600'
+                  !showEployee ? 'text-[#8C172B]' : 'text-[#808080]'
                 }`}
               >
                 Candidate
@@ -54,386 +59,262 @@ const Registration = () => {
               className='flex flex-start items-end ml-20 cursor-pointer'
               onClick={() => setShowEmployee(true)}
             >
-              <img
-                src={process.env.PUBLIC_URL + '/images/user.png'}
-                className='w-7 h-7'
-              />
+              <IconContext.Provider
+                value={{
+                  color: showEployee ? '#8C172B' : '#808080',
+                }}
+              >
+                <div>
+                  <FaRegUserCircle className='w-7 h-7' />
+                </div>
+              </IconContext.Provider>
               <span
                 className={`ml-2 text-sm ${
-                  showEployee ? 'text-red-600' : 'text-gray-600'
+                  showEployee ? 'text-[#8C172B]' : 'text-[#808080]'
                 }`}
               >
                 Employer
               </span>
             </div>
           </div>
-          <div className='flex flex-row gap-14'>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='name'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Company Name
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
-                  className='appearance-none bg-transparent border-none w-full text-gray-700 leading-tight focus:outline-none'
-                  type='text'
-                  placeholder='Please enter your company name'
-                />
+          <div className='flex flex-row items-center justify-center mt-2 gap-14'>
+            <div className='flex flex-col'>
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='Company Name'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Company Name
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <input
+                    required
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    type='text'
+                    placeholder='Enter company name'
+                  />
+                </div>
               </div>
-            </div>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='number'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Contact Number
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
-                  className='appearance-none bg-transparent border-none w-full text-gray-700  leading-tight focus:outline-none'
-                  type='number'
-                  placeholder='123456789'
-                />
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='Location'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Location
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <input
+                    required
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    type='text'
+                    placeholder='Location'
+                  />
+                  <div className='text-[#8A1538] text-2xl'>
+                    <MdLocationOn />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className='flex flex-row gap-14 '>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='Location'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Location
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-1'>
-                <input
-                  required
-                  className='appearance-none bg-transparent border-none text-gray-700 '
-                  type='text'
-                  placeholder='Location'
-                />
-                <div className=' text-red-700 text-3xl'>
-                  <MdLocationOn />
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='url'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Company Website
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <input
+                    required
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    type='url'
+                    placeholder='Enter company website url'
+                  />
+                </div>
+              </div>
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='password'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Set Password
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <input
+                    required
+                    type={showPassword ? 'text' : 'password'}
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    placeholder='* * * * * * * *'
+                  />
+                  {showPassword ? (
+                    <FiEye onClick={() => setShowPassword(!showPassword)} />
+                  ) : (
+                    <FiEyeOff onClick={() => setShowPassword(!showPassword)} />
+                  )}
                 </div>
               </div>
             </div>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='designation'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Designation
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
-                  className='appearance-none bg-transparent border-none w-full text-gray-700  leading-tight focus:outline-none'
-                  type='tel'
-                  placeholder='Enter your Designation'
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className='flex flex-row gap-14'>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='url'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Company Website
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
-                  className='appearance-none bg-transparent border-none w-full text-gray-700 leading-tight focus:outline-none'
-                  type='url'
-                  placeholder='Please enter your company email id'
-                />
-              </div>
-            </div>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='email'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Company Email ID
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
-                  className='appearance-none bg-transparent border-none w-full text-gray-700  leading-tight focus:outline-none'
-                  type='email'
-                  placeholder='email@gmail.com'
-                />
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-row gap-14 '>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='password'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Set Password
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
-                  type={showPassword ? 'text' : 'password'}
-                  className='appearance-none bg-transparent mr-2 text-sm border-none w-full text-gray-700  leading-tight focus:outline-none'
-                  placeholder='Please enter your password '
-                />
-                {showPassword ? (
-                  <FiEye onClick={() => setShowPassword(!showPassword)} />
-                ) : (
-                  <FiEyeOff onClick={() => setShowPassword(!showPassword)} />
-                )}
-              </div>
-            </div>
-            <div className='mb-2 mt-8'>
-              <label
-                htmlFor='password'
-                className='block flex text-sm font-semibold text-gray-800'
-              >
-                Confirm Password
-                <p className='mt-1 ml-1'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='w-2 h-2'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                    />
-                  </svg>
-                </p>
-              </label>
-              <div className='flex items-center border-b border-grey-500 py-2'>
-                <input
-                  required
-                  type={confirmPassword ? 'text' : 'password'}
-                  className='appearance-none bg-transparent text-sm mr-2 border-none w-full text-gray-700  leading-tight focus:outline-none'
-                  placeholder='Please enter your password '
-                />
-                {confirmPassword ? (
-                  <FiEye onClick={() => setConfirmPassword(!confirmPassword)} />
-                ) : (
-                  <FiEyeOff
-                    onClick={() => setConfirmPassword(!confirmPassword)}
+            <div className='flex flex-col'>
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='number'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Contact Number
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <input
+                    required
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    type='tel'
+                    pattern='[0-9]{10}'
+                    placeholder='+91 1234567890'
                   />
-                )}
+                </div>
+              </div>
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='designation'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Designation
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <select
+                    required
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                  >
+                    <option value='' className='text-[#4A535C80]'>
+                      Enter your designation
+                    </option>
+                    <option value='US'>United States</option>
+                    <option value='CA'>Canada</option>
+                    <option value='FR'>France</option>
+                    <option value='DE'>Germany</option>
+                  </select>
+                </div>
+              </div>
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='email'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Company Email ID
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <input
+                    required
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    type='email'
+                    placeholder='Enter your company email ID'
+                  />
+                </div>
+              </div>
+              <div className='mb-2 mt-4 w-64'>
+                <label
+                  htmlFor='password'
+                  className='block flex text-sm font-semibold text-[#000000]'
+                >
+                  Confirm Password
+                  <span className='text-[#8C172B] ml-1'>*</span>
+                </label>
+                <div className='flex items-center border-b text-[#4A535C80] pt-2'>
+                  <input
+                    required
+                    type={confirmPassword ? 'text' : 'password'}
+                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    placeholder='* * * * * * * *'
+                  />
+                  {confirmPassword ? (
+                    <FiEye
+                      onClick={() => setConfirmPassword(!confirmPassword)}
+                    />
+                  ) : (
+                    <FiEyeOff
+                      onClick={() => setConfirmPassword(!confirmPassword)}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
-
-          <div className='flex items-start'>
-            <div className='flex items-start ml-20'>
-              <div className='flex items-center h-5'>
-                <input
-                  id='remember'
-                  type='checkbox'
-                  value=''
-                  className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800'
-                  required
-                />
-              </div>
-              <label
-                htmlFor='remember'
-                className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 flex'
-              >
-                I agree with<p className='text-red-700 ml-2'>CB T & C*</p>
-                <p className='ml-2'>and</p>
-                <p className='text-red-700 ml-2'>Privacy Policy* </p>
-              </label>
-            </div>
+          <div className='flex items-center justify-center mt-4'>
+            <input
+              type='checkbox'
+              className='w-4 h-4 ml-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800'
+              required
+            />
+            <label
+              htmlFor='remember'
+              className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 flex'
+            >
+              I agree with
+              <p className='text-[#8A1538] ml-2 font-medium'>CB T & C*</p>
+              <p className='ml-2'>and</p>
+              <p className='text-[#8A1538] ml-2 font-medium'>Privacy Policy </p>
+            </label>
           </div>
-          <div></div>
-          <button
-            className='w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow'
-            type='submit'
-          >
-            Register
-          </button>
-          <button
-            type='button'
-            className='w-full text-black border border-pink-700 font-medium rounded-lg text-xl px-5 py-2.5 text-center'
-            onClick={() => navigate('/')}
-          >
-            Already have an account ?
-            <span className='ml-2 text-sm text-pink-700 hover:underline dark:text-blue-500'>
-              Login
-            </span>
-          </button>
+          <div className='flex flex-col items-center justify-center'>
+            <button
+              className='w-80 h-10 mt-4 bg-[#8A1538] text-white active:bg-pink-600 text-sm rounded-lg tracking-wider'
+              type='submit'
+            >
+              Register
+            </button>
+            <button
+              type='button'
+              className='w-80 h-10 mt-3 text-black border border-[#8A1538] font-medium rounded-lg text-xs text-center'
+              onClick={() => navigate('/')}
+            >
+              Already have an account ?
+              <span className='ml-2 text-sm text-[#8A1538] font-bold text-xs'>
+                Login
+              </span>
+            </button>
+          </div>
         </form>
       </div>
       {showModal && (
-        <>
-          <div className='justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'>
-            <div className='relative w-auto my-6 mx-auto max-w-3xl'>
-              {/*content*/}
-              <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
-                <div class='mt-3 text-center'>
-                  <div class='mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100'>
-                    <svg
-                      class='h-6 w-6 text-green-600'
-                      fill='none'
-                      stroke='currentColor'
-                      viewBox='0 0 24 24'
-                      xmlns='http://www.w3.org/2000/svg'
+        <div>
+          <div className='flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'>
+            <div className='relative w-48 h-48 my-6 mx-auto'>
+              <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none bg-[#f8eff0]'>
+                <div class='mt-3 text-right text-[#8A1538] fill-[#8A1538]'>
+                  <button
+                    class='px-4'
+                    onClick={() => {
+                      setShowModal(false);
+                      navigate('/dashboard');
+                    }}
+                  >
+                    <IoIosCloseCircle />
+                  </button>
+                  <div class='mx-auto flex items-center justify-center h-8 w-8 rounded-full bg-white'>
+                    <IconContext.Provider
+                      value={{
+                        color: '#4ECB71',
+                      }}
                     >
-                      <path
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                        stroke-width='2'
-                        d='M5 13l4 4L19 7'
-                      ></path>
-                    </svg>
+                      <FaCheck />
+                    </IconContext.Provider>
                   </div>
                 </div>
-                {/*body*/}
-                <div className='relative p-6 flex-auto'>
-                  <p className='my-4 text-slate-500 text-lg leading-relaxed'>
-                    Your account has been registered successfully.
-                  </p>
-                </div>
-                {/*footer*/}
-                <button
-                  id='ok-btn'
-                  class='px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300'
-                  onClick={() => {
-                    setShowModal(false);
-                    navigate('/dashboard');
+                <p
+                  className='my-4 pb-8 text-black text-xs font-medium mx-4 w-auto text-center'
+                  dangerouslySetInnerHTML={{
+                    __html: 'Your registration<br/>has been successfully done',
                   }}
-                >
-                  OK
-                </button>
+                ></p>
               </div>
             </div>
           </div>
           <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
-        </>
+        </div>
       )}
     </div>
   );

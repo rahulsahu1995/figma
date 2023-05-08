@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Dash from './Dash';
+import Mandatory from '../mandatory/Mandatory';
+import { AiFillCaretDown } from 'react-icons/ai';
+import Footer from '../Footer/Footer';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -7,21 +11,29 @@ const Dashboard = () => {
   const handleSubmit = () => {
     navigate('/search');
   };
+  const [selected, setSelected] = useState('');
+
+  const handleChange = (event) => {
+    console.log('Label 👉️', event.target.selectedOptions[0].label);
+    console.log(event.target.value);
+
+    setSelected(event.target.value);
+  };
 
   return (
     <>
       <div>
-        <nav className='border-gray-200  bg-gradient-to-r from-white  to-pink-700 dark:bg-gray-800 dark:border-gray-700'>
+        <nav className='border-gray-200  bg-gradient-to-r from-white to-[#8A1538] dark:bg-gray-800 dark:border-gray-700'>
           <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-            <a href='#' className='flex items-center'>
+            <a href='/#' className='flex items-center'>
               <img
                 src={process.env.PUBLIC_URL + '/images/candit.png'}
                 className='h-8 mr-3'
                 alt='logo'
               />
-              <span className='flex self-center text-xl font-semibold uppercase whitespace-nowrap dark:text-white'>
+              <span className='flex self-center text-xl font-semibold uppercase whitespace-nowrap'>
                 Candidates
-                <p className='text-pink-700 ml-2'>Bazaar</p>
+                <p className='text-[#8A1538] ml-2'>Bazaar</p>
               </span>
             </a>
             <button
@@ -54,7 +66,7 @@ const Dashboard = () => {
                 <li className='flex'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
+                    fill='#8A1538'
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
                     stroke='white'
@@ -67,8 +79,8 @@ const Dashboard = () => {
                     />
                   </svg>
                   <a
-                    href='#'
-                    className='block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent'
+                    href='/#'
+                    className='block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 '
                     aria-current='page'
                   >
                     Browse Talent
@@ -77,7 +89,7 @@ const Dashboard = () => {
                 <li className='flex'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    fill='#be185d'
+                    fill='#8A1538'
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
                     stroke='white'
@@ -90,7 +102,7 @@ const Dashboard = () => {
                     />
                   </svg>
                   <a
-                    href='#'
+                    href='/#'
                     className='block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                   >
                     Pricing
@@ -98,17 +110,17 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <a
-                    href='#'
+                    href='/#'
                     className='block text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                   >
-                    <button className='btn bg-white hover:bg-white text-pink-700 font-sm py-1 px-4  rounded'>
+                    <button className='btn bg-white hover:bg-white text-[#8A1538] font-sm py-1 px-4  rounded'>
                       Post A Job
                     </button>
                   </a>
                 </li>
                 <li>
                   <a
-                    href='#'
+                    href='/#'
                     className='block py-2 pl-3 pr-4 text-white rounded md:hover:bg-transparent md:border-0  md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                   >
                     <svg
@@ -136,213 +148,127 @@ const Dashboard = () => {
       {/* Form-----!!!! */}
 
       <div>
-        <div className='flex flex-col justify-center items-center'>
-          <div className='text-center font-bold text-5xl p-2 mt-16 font-mono'>
-            Hey!
-          </div>
+        <div className='flex flex-col justify-center items-center p-8'>
+          <div className='text-center font-bold text-5xl font-mono'>Hey!</div>
           <p className='text-center text-2xl'>
             Techno Wiz Solution | CBE120 Welcome To Candidates Bazaar
           </p>
-          <div className='border-2 px-48 mt-6'>
-            <form className='w-full max-w-lg' onSubmit={() => handleSubmit()}>
-              <div className='flex flex-wrap -mx-3 mb-6 mt-8'>
-                <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
-                  <label
-                    className=' tracking-wide text-gray-700  flex text-xs font-bold mb-2'
-                    htmlFor='grid-first-name'
-                  >
+          <div className='border-2 w-10/12 mt-6'>
+            <form className='px-8' onSubmit={() => handleSubmit()}>
+              <div className='flex flex-wrap  py-8'>
+                <div className='w-1/2 md:mb-0'>
+                  <label className='tracking-wide text-gray-700 flex text-sm font-semibold'>
                     Enter Job Title
-                    <p className='mt-1'>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='#be185d'
-                        viewBox='0 0 24 24'
-                        strokeWidth={1.5}
-                        stroke='currentColor'
-                        className='w-2 h-2'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                        />
-                      </svg>
-                    </p>
+                    <Mandatory />
                   </label>
                   <input
                     required
-                    className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                    className='appearance-none border-b w-full bg-white text-gray-700 border-gray-200 rounded py-3 leading-tight focus:outline-none'
                     id='grid-first-name'
                     type='text'
                     placeholder='E.g. Web Developer'
                   />
                 </div>
-                <div className='w-full md:w-1/2 px-3'>
-                  <label
-                    className='block tracking-wide flex text-gray-700 text-xs font-bold mb-2'
-                    htmlFor='grid-last-name'
-                  >
-                    Salary Range{''}
-                    <p className='mt-1'>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='#be185d'
-                        viewBox='0 0 24 24'
-                        strokeWidth='1.5'
-                        stroke='currentColor'
-                        className='w-2 h-2'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                        />
-                      </svg>
-                    </p>
-                  </label>
-                  <input
-                    className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-                    id='grid-last-name'
-                    type='text'
-                    placeholder='Select Salary Range'
-                  />
-                </div>
-              </div>
-              <div className='flex flex-wrap -mx-3 mb-6'>
-                <div className='w-full px-3'>
-                  <label
-                    className='block flex tracking-wide text-gray-700 text-xs font-bold mb-2'
-                    htmlFor='grid-password'
-                  >
-                    Select additional skill(s)
-                    <p>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='#be185d'
-                        viewBox='0 0 24 24'
-                        strokeWidth={1.5}
-                        stroke='currentColor'
-                        className='w-2 h-2'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                        />
-                      </svg>
-                    </p>
-                  </label>
-                  <input
-                    required
-                    className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-                    id='grid-password'
-                    type='password'
-                    placeholder='E.g. AngularJS'
-                  />
-                </div>
-              </div>
-              <div className='flex flex-wrap -mx-3 mb-2'>
-                <div className='w-full md:w-1/3 px-3 mb-6 md:mb-0'>
-                  <label
-                    className='block flex tracking-wide text-gray-700 text-xs font-bold mb-2'
-                    htmlFor='grid-city'
-                  >
-                    Certification
-                    <p className='mt-1 ml-1'>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='#be185d'
-                        viewBox='0 0 24 24'
-                        strokeWidth={1.5}
-                        stroke='currentColor'
-                        className='w-2 h-2'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                        />
-                      </svg>
-                    </p>
-                  </label>
-                  <input
-                    required
-                    className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-                    id='grid-city'
-                    type='text'
-                    placeholder='AWS'
-                  />
-                </div>
-                <div className='w-full md:w-1/3 px-3 mb-6 md:mb-0'>
-                  <label
-                    className='block tracking-wide flex text-gray-700 text-xs font-bold mb-2'
-                    htmlFor='grid-state'
-                  >
-                    Relevent Experience
-                    <p className='mt-1'>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='#be185d'
-                        viewBox='0 0 24 24'
-                        strokeWidth='1.5'
-                        stroke='currentColor'
-                        className='w-2 h-2'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          d='M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z'
-                        />
-                      </svg>
-                    </p>
-                  </label>
-                  <div className='relative'>
-                    <select
-                      className='block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-                      id='grid-state'
+                <div className='w-1/2 px-8 mt-2'>
+                  <div className='w-full '>
+                    <label
+                      className='flex tracking-wide text-gray-700 text-sm font-semibold mb-2'
+                      htmlFor='grid-password'
                     >
-                      <option>0</option>
-                      <option>1 Year</option>
-                      <option>2 Years</option>
-                      <option>More Then 3 Years</option>
+                      Select additional skill(s)
+                      <AiFillCaretDown className='fill-[#8A1538] ml-auto mt-1.5' />
+                    </label>
+                    <select
+                      required
+                      id='dropdownLarge'
+                      className='appearance-none	 w-full py-1 bg-transparent border-b border-grey-700 text-sm text-gray-900'
+                    >
+                      <option selected className='text-gray-300'>
+                        E.g. AngularJS
+                      </option>
+                      <option value='US'>ReactJS</option>
+                      <option value='CA'>NextJS</option>
                     </select>
-                    <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-                      <svg
-                        className='fill-current h-4 w-4'
-                        xmlns='http://www.w3.org/2000/svg'
-                        viewBox='0 0 20 20'
-                      >
-                        <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
-                      </svg>
-                    </div>
                   </div>
                 </div>
               </div>
-              <div className='content-end'>
-                <button className='mb-5 bg-pink-700 text-black bg-white border border-pink-700 mt-5 font-bold  py-2 px-6 rounded'>
+              <div>
+                <div className='flex flex-row '>
+                  <div className='flex space-x-12'>
+                    <div>
+                      <label className='text-gray-700 text-sm font-semibold flex'>
+                        Salary Range
+                        <Mandatory />
+                        <AiFillCaretDown className='fill-[#8A1538] ml-20 mt-2' />
+                      </label>
+                      <select
+                        value={selected}
+                        onChange={handleChange}
+                        className='appearance-none	w-48 invalid:text-gray-400 border-b border-gray-200 py-1.5'
+                      >
+                        <option disabled={true} value=''>
+                          Select salary range
+                        </option>
+                        <option value='apple'>1-3LAP</option>
+                        <option value='banana'>3-5LAP</option>
+                        <option value='kiwi'>5-10LPA</option>
+                      </select>
+                    </div>
+
+                    <div className=''>
+                      <label className='flex text-gray-700 text-sm font-semibold'>
+                        Relevant Experience
+                        <Mandatory />
+                        <AiFillCaretDown className='fill-[#8A1538] ml-2 mt-2' />
+                      </label>
+                      <div className='relative'>
+                        <select
+                          placeholder='Car Type'
+                          className=' appearance-none w-full bg-white border-b border-gray-200 px-3 py-1.5 text-gray-700  rounded '
+                        >
+                          <option>0 to 3 Yrs</option>
+                          <option>3 to 5 Yrs</option>
+                        </select>
+                        <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='ml-32'>
+                    <label className='flex tracking-wide text-gray-700 text-sm font-semibold'>
+                      Certification(s)
+                    </label>
+                    <input
+                      required
+                      className='appearance-none block w-96 bg-white text-gray-700 border-b border-gray-200  py-1.5 rounded'
+                      id='grid-city'
+                      type='text'
+                      placeholder='AWS'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className='flex justify-end'>
+                <button className='mb-5 font-sans bg-white text-xl text-black border-2 border-[#8A1538] mt-5 font-semibold  py-2 px-8 rounded-lg'>
                   Search
                 </button>
               </div>
             </form>
           </div>
         </div>
-
-        {/* Next Card */}
-
         <div>
           <section className='text-gray-600 body-font'>
             <div className='container px-5 py-24 mx-auto'>
               <div className='flex flex-wrap -m-4 text-center'>
                 <div className='p-4 md:w-1/4 sm:w-1/2 w-full'>
                   <div className='border-2 border-gray-200 px-4 py-6 rounded-lg'>
-                    <h2 className='title-font flex inline-block justify-center font-medium text-3xl text-gray-900'>
+                    <h2 className='title-font flex justify-center font-medium text-3xl text-gray-900'>
                       <p>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
                           fill='white'
                           viewBox='0 0 24 24'
                           strokeWidth='1.5'
-                          stroke='#be185d'
+                          stroke='#8A1538'
                           className='w-10 h-10'
                         >
                           <path
@@ -358,8 +284,8 @@ const Dashboard = () => {
                           xmlns='http://www.w3.org/2000/svg'
                           fill='none'
                           viewBox='0 0 24 24'
-                          strokeWidth='1.5'
-                          stroke='#be185d'
+                          strokeWidth='3'
+                          stroke='#8A1538'
                           className='w-6 h-6'
                         >
                           <path
@@ -377,13 +303,13 @@ const Dashboard = () => {
                 </div>
                 <div className='p-4 md:w-1/4 sm:w-1/2 w-full'>
                   <div className='border-2 border-gray-200 px-4 py-6 rounded-lg'>
-                    <h2 className='title-font flex inline-block justify-center font-medium text-3xl text-gray-900'>
+                    <h2 className='title-font flex justify-center font-medium text-3xl text-gray-900'>
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
                         fill='none'
                         viewBox='0 0 24 24'
                         strokeWidth='1.5'
-                        stroke='#be185d'
+                        stroke='#8A1538'
                         className='w-10 h-10'
                       >
                         <path
@@ -398,8 +324,8 @@ const Dashboard = () => {
                           xmlns='http://www.w3.org/2000/svg'
                           fill='white'
                           viewBox='0 0 24 24'
-                          strokeWidth='1.5'
-                          stroke='#be185d'
+                          strokeWidth='3'
+                          stroke='#8A1538'
                           className='w-6 h-6'
                         >
                           <path
@@ -417,10 +343,10 @@ const Dashboard = () => {
                 </div>
                 <div className='p-4 md:w-1/4 sm:w-1/2 w-full'>
                   <div className='border-2 border-gray-200 px-4 py-6 rounded-lg'>
-                    <h2 className='title-font flex inline-block justify-center font-medium text-3xl text-gray-900'>
+                    <h2 className='title-font flex justify-center font-medium text-3xl text-gray-900'>
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
-                        fill='#be185d'
+                        fill='#8A1538'
                         viewBox='0 0 24 24'
                         strokeWidth='1.5'
                         stroke='currentColor'
@@ -438,8 +364,8 @@ const Dashboard = () => {
                           xmlns='http://www.w3.org/2000/svg'
                           fill='none'
                           viewBox='0 0 24 24'
-                          strokeWidth='1.5'
-                          stroke='#be185d'
+                          strokeWidth='3'
+                          stroke='#8A1538'
                           className='w-6 h-6'
                         >
                           <path
@@ -457,10 +383,10 @@ const Dashboard = () => {
                 </div>
                 <div className='p-4 md:w-1/4 sm:w-1/2 w-full'>
                   <div className='border-2 border-gray-200 px-4 py-6 rounded-lg'>
-                    <h2 className='title-font flex inline-block justify-center font-medium text-3xl text-gray-900'>
+                    <h2 className='title-font flex justify-center font-medium text-3xl text-gray-900'>
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
-                        fill='#be185d'
+                        fill='#8A1538'
                         viewBox='0 0 24 24'
                         strokeWidth='1.5'
                         stroke='currentColor'
@@ -478,8 +404,8 @@ const Dashboard = () => {
                           xmlns='http://www.w3.org/2000/svg'
                           fill='none'
                           viewBox='0 0 24 24'
-                          strokeWidth='1.5'
-                          stroke='#be185d'
+                          strokeWidth='3'
+                          stroke='#8A1538'
                           className='w-6 h-6'
                         >
                           <path
@@ -499,6 +425,10 @@ const Dashboard = () => {
             </div>
           </section>
         </div>
+      </div>
+      <Dash />
+      <div className='mt-10'>
+        <Footer />
       </div>
     </>
   );

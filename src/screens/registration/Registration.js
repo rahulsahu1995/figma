@@ -28,12 +28,12 @@ const Registration = () => {
         />
       </div>
       <div className='flex items-center justify-center px-12 py-8 w-8/12'>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)} >
           <div className='font-semibold text-left font-sans text-2xl'>
             Register
           </div>
           <div className='text-left text-sm'>Please sign up to continue</div>
-          <div className='flex items-center justify-center border-b text-[#4A535C80] pb-1 mt-4 w-72'>
+          <div className='flex items-center justify-center border-b text-[#4A535C80] mt-4 w-72'>
             <div
               className='flex flex-start items-end cursor-pointer'
               onClick={() => setShowEmployee(false)}
@@ -49,7 +49,7 @@ const Registration = () => {
               </IconContext.Provider>
               <span
                 className={`ml-2 text-sm ${
-                  !showEployee ? 'text-[#8C172B]' : 'text-[#808080]'
+                  !showEployee ? 'text-[#8C172B] border-b-2 border-[#8C172B]' : 'text-[#808080]'
                 }`}
               >
                 Candidate
@@ -70,7 +70,7 @@ const Registration = () => {
               </IconContext.Provider>
               <span
                 className={`ml-2 text-sm ${
-                  showEployee ? 'text-[#8C172B]' : 'text-[#808080]'
+                  showEployee ? 'text-[#8C172B] border-b-2 border-[#8C172B]' : 'text-[#808080]'
                 }`}
               >
                 Employer
@@ -186,7 +186,7 @@ const Registration = () => {
                 <div className='flex items-center border-b text-[#4A535C80] pt-2'>
                   <select
                     required
-                    className='w-full text-sm text-black mr-3 pt-1 leading-tight placeholder:text-sm border-transparent focus:border-transparent focus:ring-0 outline-none'
+                    className='w-full text-sm  mr-3 pt-1 leading-tight placeholder:text-sm border-transparent outline-none'
                   >
                     <option value='' className='text-[#4A535C80]'>
                       Enter your designation

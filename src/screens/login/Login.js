@@ -32,7 +32,7 @@ const Login = () => {
               <div className='text-center text-sm'>
                 Please Login to continue
               </div>
-              <div className='flex items-center border-b text-[#4A535C80] pb-1 mt-12'>
+              <div className='flex items-center border-b text-[#4A535C80] mt-12'>
                 <div
                   className='flex flex-start items-end cursor-pointer'
                   onClick={() => setShowEmployee(false)}
@@ -48,7 +48,7 @@ const Login = () => {
                   </IconContext.Provider>
                   <span
                     className={`ml-2 text-sm ${
-                      !showEployee ? 'text-[#8C172B]' : 'text-[#808080]'
+                      !showEployee ? 'text-[#8C172B] border-b-2 border-[#8C172B]' : 'text-[#808080]'
                     }`}
                   >
                     Candidate
@@ -69,7 +69,7 @@ const Login = () => {
                   </IconContext.Provider>
                   <span
                     className={`ml-2 text-sm ${
-                      showEployee ? 'text-[#8C172B]' : 'text-[#808080]'
+                      showEployee ? 'text-[#8C172B] border-b-2 border-[#8C172B]' : 'text-[#808080]'
                     }`}
                   >
                     Employer

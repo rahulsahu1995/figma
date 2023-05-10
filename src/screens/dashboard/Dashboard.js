@@ -25,15 +25,15 @@ const Dashboard = () => {
 
   return (
     <>
-      <nav className='border-gray-200 bg-gradient-to-r from-white to-[#8A1538] dark:bg-gray-800 dark:border-gray-700'>
-        <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4'>
+      <nav className='navbar border-gray-200 bg-gradient-to-r from-white to-[#8A1538] dark:bg-gray-800 dark:border-gray-700'>
+        <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto'>
           <a href='/#' className='flex items-center'>
             <img
               src={process.env.PUBLIC_URL + '/images/candit.png'}
               className='h-8 mr-3'
               alt='logo'
             />
-            <span className='flex text-base tracking-wide font-semibold uppercase whitespace-nowrap'>
+            <span className='flex text-sm tracking-wide font-bold uppercase whitespace-nowrap text-black'>
               Candidates
               <span className='text-[#8A1538] ml-2'>Bazaar</span>
             </span>
@@ -57,11 +57,18 @@ const Dashboard = () => {
               className='m-auto mr-1 text-2xl mr-8'
               color='white'
             />
-            <img
-              src={process.env.PUBLIC_URL + '/images/menu-logo.png'}
-              className='h-9 w-9 p-1 bg-gray-100 rounded-full'
-              alt='logo'
-            />
+            <div className='dropdown'>
+              <button className='dropbtn'>
+                <img
+                  src={process.env.PUBLIC_URL + '/images/menu-logo.png'}
+                  className='h-9 w-9 p-1 bg-gray-100 rounded-full'
+                  alt='logo'
+                />
+              </button>
+              <div className='dropdown-content'>
+                <a href='/'>Logout</a>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -87,7 +94,7 @@ const Dashboard = () => {
                     Enter Job Title
                     <span className='text-[#8C172B] ml-1'>*</span>
                   </label>
-                  <div class='border-b border-grey-dark w-full mt-2'>
+                  <div className='border-b border-grey-dark w-full mt-2'>
                     <input
                       required
                       className='text-sm text-black pt-1 leading-tight placeholder:text-sm 
@@ -105,7 +112,7 @@ const Dashboard = () => {
                         Salary Range
                         <span className='text-[#8C172B] ml-1'>*</span>
                       </label>
-                      <div class='border-b border-grey-dark mt-2'>
+                      <div className='border-b border-grey-dark mt-2'>
                         <select
                           required
                           className='w-52 text-sm text-black pt-1 leading-tight placeholder:text-sm 
@@ -135,7 +142,7 @@ const Dashboard = () => {
                         Relevant Experience
                         <span className='text-[#8C172B] ml-1'>*</span>
                       </label>
-                      <div class='border-b border-grey-dark mt-2'>
+                      <div className='border-b border-grey-dark mt-2'>
                         <select
                           required
                           className='w-52 text-sm text-black pt-1 leading-tight placeholder:text-sm 
@@ -160,7 +167,7 @@ const Dashboard = () => {
                     >
                       Select additional Skill(s)
                     </label>
-                    <div class='border-b border-grey-dark mt-2'>
+                    <div className='border-b border-grey-dark mt-2'>
                       <select
                         required
                         className='text-sm text-black pt-1 leading-tight placeholder:text-sm 
